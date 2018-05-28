@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Add Bookmark{% endblock %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}  <!-- 이게 없으면, 서버에서 post등의 업데이트? 입력 작업을 진행할 수가 없게 되어있다. middleware의 csrf부분을 지운다/안지운다로 설정 --->
+        {{ form.as_p }}   <!--  # p태그 형태로 출력할래? -->
+        <input type="submit" class="btn btn-success" value="Update" />
+    </form>
+{% endblock %}

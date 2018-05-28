@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Bookmark Delete Confirm{% endblock %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="alert alert-danger" role="alert">
+            Bookmark {{object}}를 삭제하시겠습니까?
+        </div>
+        <input type="submit" class="btn btn-danger" value="Delete" /> <!-- 사실 이 파일의 내용을 채우는것은 자율이고, 사실상 이 bookmark_confirm_delete.html파일만 있으면 된다.-->
+    </form>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+    Bookmark List
+{% endblock %}
+
+{% block content %}
+    <div class="btn-group d-block text-right mb-1" role="group">
+        <a href="{% url 'bookmark:create' %}" class="btn btn-info">Add Bookmark</a> <!-- url필터, Appname+url의 name=?? 하이퍼링크? url의 변경에 대해 수정소요없이, 사전에 정의한 name으로 그대로 유지가 가능하다. !!-->
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Site</th>
+                <th scope="col">URL</th>
+                <th scope="col">Modify</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bookmark in object_list %}
+                <tr>
+                    <td>
+                        {{ forloop.counter }}
+                    </td>
+                    <td>
+                        {{ bookmark.site_name }}
+                    </td>
+                    <td>
+                        {{ bookmark.url }}
+                    </td>
+                    <td><a href="{% url 'bookmark:update' bookmark.id %}" class="btn btn-success btn-sm">Modify</a></td>
+                    <!-- href="{% url 'bookmark:update' pk=bookmark.id %}" bookmark:update에 연결된 뷰에, 받기로한 파라미터가 pk 1개로 정의되어서 그냥 pk없이 넘겨도 무방, 후에 여러개면, a=2, b=5 등등으로 각각 설정해줘야...-->
+                    <td><a href="{% url 'bookmark:delete' bookmark.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+
